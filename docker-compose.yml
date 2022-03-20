@@ -1,0 +1,44 @@
+version: "3"
+
+volumes:
+  pgsql-db-data:
+    driver: local
+
+services:
+  base: &base
+    hostname: app
+    image: erko-app
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/home/python/app
+    environment: &env
+      ENV: "development"
+      LOG_LEVEL: "debug"
+      PYTHONPATH: "/home/python/app"
+      DATABASE_PG_URL: "postgresql://postgres:dev1234@pgsql-db/app_dev"
+      WEB_SERVER_HOST: "0.0.0.0"
+      WEB_SERVER_PORT: 8000
+      WEB_SERVER_RELOAD: "true"
+
+  app:
+    <<: *base
+    command: /bin/ash -c "poetry install && alembic upgrade head && poetry run web_server"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - pgsql-db
+
+  pgsql-db:
+    hostname: pgsql-db
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_PASSWORD: "dev1234"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/pgsql-db:/docker-entrypoint-initdb.d
+      - pgsql-db-data:/var/lib/postgresql/data
