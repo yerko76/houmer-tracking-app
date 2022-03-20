@@ -57,7 +57,7 @@ plis start pgsql-db
 - ejecutar migraciones con alembic.
 
 ```console
-alembic upgrade head
+poetry run alembic upgrade head
 ```
 
 - cargar data de prueba
