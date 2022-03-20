@@ -9,8 +9,8 @@ Houm tracking api permite realizar las siguientes capacidades de negocio:
 
 ## Documentation
 
-[Arquitectura de componentes](documentation/architecture/hiight_level.md)
-[Definicion de API](documentation/api/api.md)
+- Descripcion de arquitectura de alto nivel, arquitectura de componentes y estructura de proyecto[Arquitectura de componentes](documentation/architecture/hiight_level.md)
+- Descripcion y definicion de la API [Definicion de API](documentation/api/api.md)
 
 ## Tech Stack
 
