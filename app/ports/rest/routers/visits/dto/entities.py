@@ -24,6 +24,13 @@ class Stop(BaseModel):
     location: Location
 
 
+class StopResponse(BaseModel):
+    stopId: str
+    description: str
+    location: Location
+    timeInLocation: str
+
+
 class VisitResponse(BaseModel):
     visitId: str
     stops: List[Stop]

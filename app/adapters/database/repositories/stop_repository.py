@@ -1,9 +1,10 @@
 from app.domain.stop.entities.entities import Stop, StopEnum
 from app.adapters.database.models.stop import StopEntity
+from app.adapters.database.models.visit import VisitEntity
 from app.adapters.database.repositories import place_repository
 from app.adapters.database.configuration.sqlalchemy import database
 from typing import List
-from datetime import datetime
+from datetime import datetime, date
 import uuid
 
 
@@ -14,7 +15,7 @@ async def fetchByVisitId(visitId: str) -> List[Stop]:
     if result is None:
         return []
     stops: List[Stop] = []
-    # refactor this multiple querys (check orm to load relationships)
+    # TODO: refactor this multiple querys (check orm to load relationships)
     for row in result:
         placeIdTuple = row['place_id']
         place = await place_repository.fetchByPlaceId(placeIdTuple)
@@ -72,3 +73,29 @@ async def completeInspection(stopId: str):
         .values(values)
     )
     await database.execute(query)
+
+
+async def fetchByHoumerAndDate(houmerId: int, visitedDay: date) -> List[Stop]:
+    visitQuery = VisitEntity.select().where(VisitEntity.c.houmer_id == houmerId).where(
+        VisitEntity.c.scheduled_at == visitedDay)
+    result = await database.fetch_all(visitQuery)
+    stops: List[Stop] = []
+    for result in result:
+        visitId = result['visit_id']
+        print(visitId)
+        stopQuery = StopEntity.select().where(StopEntity.c.visit_id == visitId).where(
+            StopEntity.c.status == "COMPLETED")
+        result = await database.fetch_all(stopQuery)
+        for row in result:
+            placeIdTuple = row['place_id']
+            place = await place_repository.fetchByPlaceId(placeIdTuple)
+            stop = Stop()
+            stop.stopId = str(row['stop_id'])
+            stop.status = row['status']
+            stop.start = row['start_at']
+            stop.end = row['end_at']
+            stop.visitingStart = row['visiting_start']
+            stop.visitingEnd = row['visiting_end']
+            stop.place = place
+            stops.append(stop)
+    return stops

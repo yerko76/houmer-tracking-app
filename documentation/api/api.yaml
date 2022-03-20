@@ -96,7 +96,8 @@ paths:
     get:
       tags:
         - stops
-      summary: Getstopsbyvisit
+      summary: get stops by given visitId
+      description: Returns stops associated to a visitId
       operationId: getStopsByVisit_api_visits__visitId__houmer__houmerId__stops_get
       parameters:
         - required: true
@@ -127,7 +128,8 @@ paths:
     put:
       tags:
         - stops
-      summary: Beginstop
+      summary: start trip to location
+      description: start trip to the selected location
       operationId: beginStop_api_visits_houmer__houmerId__stops__stopId__begin_put
       parameters:
         - required: true
@@ -154,11 +156,45 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
+  /api/visits/houmer/{houmerId}/stops:
+    get:
+      tags:
+        - stops
+      summary: Get visited stops by a given date
+      description: Return the stops visited by the houmer by given date
+      operationId: stopsByDate_api_visits_houmer__houmerId__stops_get
+      parameters:
+        - required: true
+          schema:
+            title: Houmerid
+            type: integer
+          name: houmerId
+          in: path
+        - required: true
+          schema:
+            title: Visitedday
+            type: string
+            format: date
+          name: visitedDay
+          in: query
+      responses:
+        "200":
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
   /api/visits/houmer/{houmerId}/stops/{stopId}/complete:
     put:
       tags:
         - stops
-      summary: Completestop
+      summary: Complete trip to location
+      description: Complete trip to given stopId
       operationId: completeStop_api_visits_houmer__houmerId__stops__stopId__complete_put
       parameters:
         - required: true
@@ -189,7 +225,8 @@ paths:
     put:
       tags:
         - stops
-      summary: Startinspection
+      summary: Start the visit/inspection of location
+      description: Start the visit/inspection of location
       operationId: startInspection_api_visits_houmer__houmerId__stops__stopId__inspection_start_put
       parameters:
         - required: true
@@ -220,7 +257,8 @@ paths:
     put:
       tags:
         - stops
-      summary: Completeinspection
+      summary: Complete inspection of location
+      description: Complete inspection of given location
       operationId: completeInspection_api_visits_houmer__houmerId__stops__stopId__inspection_complete_put
       parameters:
         - required: true

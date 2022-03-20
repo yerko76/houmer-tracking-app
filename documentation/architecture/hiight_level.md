@@ -5,7 +5,7 @@
 Crear un servicio REST que:
 
 - Permita que la aplicación móvil mande las coordenadas del Houmer
-- Para un día retorne todas las coordenadas de las propiedades que visitó y cuanto tiempo se quedó en cada una
+- Para un día retorne todas las coordenadas de las propiedades que visitó el houmer y cuanto tiempo se quedó en cada una
 - Para un día retorne todos los momentos en que el houmer se trasladó con una velocidad superior a cierto parámetro
 
 ## Requerimientos no funcionales

@@ -1,5 +1,6 @@
 from typing import Protocol, List
 from app.domain.stop.entities.entities import Stop
+from datetime import date
 
 
 class StopDbGateway(Protocol):
@@ -16,4 +17,7 @@ class StopDbGateway(Protocol):
         ...
 
     async def completeInspection(self, stopId: str):
+        ...
+
+    async def fetchByHoumerAndDate(self, houmerId: int, visitedDay: date) -> List[Stop]:
         ...
