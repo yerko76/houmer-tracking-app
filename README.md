@@ -36,12 +36,37 @@ Para comenzar con el desarrollo se recomienda tener las siguientes herramientas 
 - [Plis](https://github.com/IcaliaLabs/plis)
 - [Poetry](https://python-poetry.org/)
 
-### Running the API
+### Running the API in local env
 
-To run the API in development mode, follow these steps:
+Revisar las variables de ambiente en el archivo .env 
 
-- Start a container with: `plis start --service-ports app ash`
-- Inside the container run: `poetry install`
-- Start the web server with: `poetry run web_server`
-- Seed DB data with: `poetry run seeder`
-- Run migrations with: `alembic upgrade head`
+- Instalar librerias
+```console
+poetry install
+```
+- Iniciar el contenedor de postgres
+```console
+plis start pgsql-db
+```
+- Iniciar el servidor web
+```console
+poetry run web_server
+```
+- Revisar si la app esta corriendo de forma correcta
+```console
+curl -X 'GET' \
+  'http://localhost:8000/status' \
+  -H 'accept: application/json'
+```
+
+Para ejecutar todo desde docker
+- Levantar todos los contenedores
+```console
+plis start
+```
+- Revisar si la app esta corriendo de forma correcta
+```console
+curl -X 'GET' \
+  'http://localhost:8000/status' \
+  -H 'accept: application/json'
+```
