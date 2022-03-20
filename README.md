@@ -9,11 +9,13 @@ Houm tracking api permite realizar las siguientes capacidades de negocio:
 
 Supuestos: Se supone que la carga de lugares con sus cordenadas es responsabilidad de otro servicio, y se asume que la data existe, es por esto que se usa un seeder para cargar data de prueba.
 Se asume que estamos en un contexto de seguridad por lo cual no se desarrollan componentes para validar jwt/oauth/open id connect
+
 ## Documentation
 
 - Descripcion de arquitectura de alto nivel, arquitectura de componentes y estructura de proyecto [Arquitectura de componentes](documentation/architecture/hiight_level.md)
 - Descripcion y definicion de la API [Definicion de API](documentation/api/api.md)
 - Persistencia y diagrama de ER [DB](documentation/persistence/persistence.md)
+
 ## Tech Stack
 
 El proyecto esta construido con las siguientes herramientas:
@@ -38,21 +40,40 @@ Para comenzar con el desarrollo se recomienda tener las siguientes herramientas 
 
 ### Running the API in local env
 
-Revisar las variables de ambiente en el archivo .env 
+Revisar las variables de ambiente en el archivo .env
 
 - Instalar librerias
+
 ```console
 poetry install
 ```
+
 - Iniciar el contenedor de postgres
+
 ```console
 plis start pgsql-db
 ```
+
+- ejecutar migraciones con alembic.
+
+```console
+alembic upgrade head
+```
+
+- cargar data de prueba
+
+```console
+poetry run seeder
+```
+
 - Iniciar el servidor web
+
 ```console
 poetry run web_server
 ```
+
 - Revisar si la app esta corriendo de forma correcta
+
 ```console
 curl -X 'GET' \
   'http://localhost:8000/status' \
@@ -60,11 +81,15 @@ curl -X 'GET' \
 ```
 
 Para ejecutar todo desde docker
+
 - Levantar todos los contenedores
+
 ```console
 plis start
 ```
+
 - Revisar si la app esta corriendo de forma correcta
+
 ```console
 curl -X 'GET' \
   'http://localhost:8000/status' \
