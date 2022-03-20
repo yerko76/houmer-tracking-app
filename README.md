@@ -11,7 +11,7 @@ Supuestos: Se supone que la carga de lugares con sus cordenadas es responsabilid
 Se asume que estamos en un contexto de seguridad por lo cual no se desarrollan componentes para validar jwt/oauth/open id connect
 ## Documentation
 
-- Descripcion de arquitectura de alto nivel, arquitectura de componentes y estructura de proyecto[Arquitectura de componentes](documentation/architecture/hiight_level.md)
+- Descripcion de arquitectura de alto nivel, arquitectura de componentes y estructura de proyecto [Arquitectura de componentes](documentation/architecture/hiight_level.md)
 - Descripcion y definicion de la API [Definicion de API](documentation/api/api.md)
 - Persistencia y diagrama de ER [DB](documentation/persistence/persistence.md)
 ## Tech Stack
