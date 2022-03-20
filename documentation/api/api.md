@@ -1,6 +1,6 @@
 # Houmer Tracking Api 
 
-Houm visit api allows houmers the following features:
+Houm tracking api permite realizar las siguientes capacidades de negocio:
  1. Agendar visitas para cada houmer, cada visita contendra una parada la cual el houmer visitara
  2. Actualizar la posicion actual del houmer
  3. Actualizar los estados de las paradas que el houmer visitara

@@ -1,43 +1,37 @@
-# APP
+# HOUM Tracking App
 
-## Description
+Houm tracking api permite realizar las siguientes capacidades de negocio:
+
+1.  Agendar visitas para cada houmer, cada visita contendra una parada la cual el houmer visitara
+2.  Actualizar la posicion actual del houmer
+3.  Actualizar los estados de las paradas que el houmer visitara
+4.  Realizar consultas sobre las paradas visitadas por el houmer usando distintos parametros de busqueda
+
+## Documentation
+
+Arquitectura de componentes [Arquitectura de componentes](documentation/architecture/hiight_level.mdother_file.md)
 
 ## Tech Stack
 
-This project is comprised of the following languages and libraries:
+El proyecto esta construido con las siguientes herramientas:
 
-- Language: [Python 3.8+](https://www.python.org/)
-- Package management: [Poetry](https://python-poetry.org/)
-- Web framework: [FastAPI](https://fastapi.tiangolo.com/)
-- Production web server: [Uvicorn](http://www.uvicorn.org/)
-- Relational database: [Postgres](https://www.postgresql.org/)
-- Relational database async support: [databases](https://www.encode.io/databases/)
-- Relational database migrations: [Alembic](https://alembic.sqlalchemy.org/en/latest/)
-- Relational ORM: [SQLAlchemy](https://www.sqlalchemy.org/)
-- Functional programming utilities: [Toolz](https://toolz.readthedocs.io/en/latest/)
-- Data parsing and validation: [Pydantic](https://pydantic-docs.helpmanual.io/)
-
-Auxiliary libraries were omitted but can be found in the [pyproject](https://github.com/GArmane/python-fastapi-hex-todo/blob/master/pyproject.toml) file.
+- Lenguaje: [Python 3.8+](https://www.python.org/)
+- Manejador de paquetes: [Poetry](https://python-poetry.org/)
+- Framework Web: [FastAPI](https://fastapi.tiangolo.com/)
+- Web server: [Uvicorn](http://www.uvicorn.org/)
+- Base de datos: [Postgres](https://www.postgresql.org/)
+- Migraciones de BD: [Alembic](https://alembic.sqlalchemy.org/en/latest/)
+- ORM: [SQLAlchemy](https://www.sqlalchemy.org/)
 
 ## Development
 
-To start development it is recommended to have these utilities installed in a local development machine:
+Para comenzar con el desarrollo se recomienda tener las siguientes herramientas instaladas
 
 - [Python 3.8+](https://www.python.org/)
 - [Docker](https://www.docker.com/)
 - [Git](https://git-scm.com/)
 - [Plis](https://github.com/IcaliaLabs/plis)
-
-For better development experience, it is recommended these tools:
-
-- [Visual Studio Code](https://code.visualstudio.com/)
 - [Poetry](https://python-poetry.org/)
-
-Be certain that you are installing Poetry with the correct version of Python in your machine, that is, Python 3.
-
-This project is already configured with VS Code IDE in mind. To have access of tools and code analysis utilities, you only need to install the project dependencies locally with `poetry install` and to open the project workspace file on VS Code.
-
-The IDE should be automatically configured with standard rules and options for optimal development experience.
 
 ### Running the API
 
@@ -48,4 +42,3 @@ To run the API in development mode, follow these steps:
 - Start the web server with: `poetry run web_server`
 - Seed DB data with: `poetry run seeder`
 - Run migrations with: `alembic upgrade head`
-

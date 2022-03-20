@@ -35,7 +35,7 @@ El sistema debe ser altamente escalable, por lo cual se utilizaran multiples ins
 
 ### Diagrama de arquitectura de aplicación
 
-A nivel interno se determino que la mejor opcion es implementar arquitectura hexagonal \*(https://alistair.cockburn.us/hexagonal-architecture/)
+A nivel interno se determino que la mejor opcion es implementar arquitectura hexagonal (https://alistair.cockburn.us/hexagonal-architecture)
 
 La motivacion principal es separar tecnologia de logica de negocio, por lo que la aplicacion esta agrupada de la siguiente forma:
 
