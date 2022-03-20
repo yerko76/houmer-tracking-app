@@ -29,7 +29,7 @@ async def scheduleVisit(houmerId: int, request: VisitRequest) -> VisitResponse:
 
 
 @router.put(
-    "{visitId}/houmer/{houmerId}",
+    "/{visitId}/houmer/{houmerId}",
     status_code=201,
     tags=["visit"],
     summary="Update houmer location",

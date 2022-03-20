@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Houmer Tracking API
   description: Houmer Tracking API
-  version: '1.0'
+  version: "1.0"
 paths:
   /status:
     get:
@@ -12,12 +12,12 @@ paths:
       description: Performs health check and returns information about running service.
       operationId: health_check_status_get
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HealthCheck'
+                $ref: "#/components/schemas/HealthCheck"
   /api/visits/houmer/{houmerId}:
     post:
       tags:
@@ -36,29 +36,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VisitRequest'
+              $ref: "#/components/schemas/VisitRequest"
         required: true
       responses:
-        '201':
+        "201":
           description: Successful Response
           content:
             application/json:
               schema: {}
-        '401':
+        "401":
           description: User unauthorized
-        '422':
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-  /api/visits{visitId}/houmer/{houmerId}:
+                $ref: "#/components/schemas/HTTPValidationError"
+  /api/visits/{visitId}/houmer/{houmerId}:
     put:
       tags:
         - visit
       summary: Update houmer location
       description: Updates houmer location by given visit
-      operationId: updateLocation_api_visits_visitId__houmer__houmerId__put
+      operationId: updateLocation_api_visits__visitId__houmer__houmerId__put
       parameters:
         - required: true
           schema:
@@ -76,22 +76,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateLocation'
+              $ref: "#/components/schemas/UpdateLocation"
         required: true
       responses:
-        '201':
+        "201":
           description: Successful Response
           content:
             application/json:
               schema: {}
-        '401':
+        "401":
           description: User unauthorized
-        '422':
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
   /api/visits/{visitId}/houmer/{houmerId}/stops:
     get:
       tags:
@@ -112,17 +112,141 @@ paths:
           name: houmerId
           in: path
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema: {}
-        '422':
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
+  /api/visits/houmer/{houmerId}/stops/{stopId}/begin:
+    put:
+      tags:
+        - stops
+      summary: Beginstop
+      operationId: beginStop_api_visits_houmer__houmerId__stops__stopId__begin_put
+      parameters:
+        - required: true
+          schema:
+            title: Houmerid
+            type: integer
+          name: houmerId
+          in: path
+        - required: true
+          schema:
+            title: Stopid
+            type: string
+          name: stopId
+          in: path
+      responses:
+        "201":
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+  /api/visits/houmer/{houmerId}/stops/{stopId}/complete:
+    put:
+      tags:
+        - stops
+      summary: Completestop
+      operationId: completeStop_api_visits_houmer__houmerId__stops__stopId__complete_put
+      parameters:
+        - required: true
+          schema:
+            title: Houmerid
+            type: integer
+          name: houmerId
+          in: path
+        - required: true
+          schema:
+            title: Stopid
+            type: string
+          name: stopId
+          in: path
+      responses:
+        "201":
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+  /api/visits/houmer/{houmerId}/stops/{stopId}/inspection/start:
+    put:
+      tags:
+        - stops
+      summary: Startinspection
+      operationId: startInspection_api_visits_houmer__houmerId__stops__stopId__inspection_start_put
+      parameters:
+        - required: true
+          schema:
+            title: Houmerid
+            type: integer
+          name: houmerId
+          in: path
+        - required: true
+          schema:
+            title: Stopid
+            type: string
+          name: stopId
+          in: path
+      responses:
+        "201":
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+  /api/visits/houmer/{houmerId}/stops/{stopId}/inspection/complete:
+    put:
+      tags:
+        - stops
+      summary: Completeinspection
+      operationId: completeInspection_api_visits_houmer__houmerId__stops__stopId__inspection_complete_put
+      parameters:
+        - required: true
+          schema:
+            title: Houmerid
+            type: integer
+          name: houmerId
+          in: path
+        - required: true
+          schema:
+            title: Stopid
+            type: string
+          name: stopId
+          in: path
+      responses:
+        "201":
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
 components:
   schemas:
     HTTPValidationError:
@@ -133,7 +257,7 @@ components:
           title: Detail
           type: array
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: "#/components/schemas/ValidationError"
     HealthCheck:
       title: HealthCheck
       required:
@@ -178,7 +302,7 @@ components:
       type: object
       properties:
         currentLocation:
-          $ref: '#/components/schemas/Location'
+          $ref: "#/components/schemas/Location"
     ValidationError:
       title: ValidationError
       required:
@@ -207,12 +331,12 @@ components:
       type: object
       properties:
         currentLocation:
-          $ref: '#/components/schemas/Location'
+          $ref: "#/components/schemas/Location"
         places:
           title: Places
           type: array
           items:
-            $ref: '#/components/schemas/Place'
+            $ref: "#/components/schemas/Place"
         date:
           title: Date
           type: string

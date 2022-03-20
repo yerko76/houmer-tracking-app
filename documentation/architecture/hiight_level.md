@@ -39,6 +39,8 @@ A nivel interno se determino que la mejor opcion es implementar arquitectura hex
 
 La motivacion principal es separar tecnologia de logica de negocio, por lo que la aplicacion esta agrupada de la siguiente forma:
 
+![](proyect-structure.png)
+
 - adapters: Se identifican los componentes de salida de la aplicacion, como por ejemplo bases de datos, cache o servicios externos, en este caso solo tenemos un adaptador que esta relacionado con la capa de persistencia (PostGres)
 - ports: Son la entrada a la aplicacion, pueden ser servicios rest, grpc o graphql, en este caso son endpoints rest
 - domain: esta compuesta por las entidades de negocio y casos de uso.
